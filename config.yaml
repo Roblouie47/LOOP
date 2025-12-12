@@ -1,0 +1,7 @@
+# Example configuration for YouTube Looper
+site:
+  title: YouTube Video Looper
+  description: A simple app to loop YouTube videos
+settings:
+  default_loop_count: 1
+  max_loop_count: 100
