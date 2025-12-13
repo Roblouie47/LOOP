@@ -1,0 +1,6 @@
+services:
+  - type: static
+    name: youtube-looper
+    env: static
+    buildCommand: ""
+    staticPublishPath: .

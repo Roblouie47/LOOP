@@ -11,6 +11,13 @@ if ('serviceWorker' in navigator) {
 let player;
 let currentLoop = 0;
 let maxLoops = 1;
+// Update the loop count display
+function updateLoopCountDisplay() {
+    const display = document.getElementById('loop-count-display');
+    if (display) {
+        display.textContent = `Loops: ${currentLoop}`;
+    }
+}
 
 function getYouTubeID(url) {
     const regExp = /^.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -39,6 +46,7 @@ function createPlayer(videoId) {
 function onPlayerStateChange(event) {
     if (event.data === YT.PlayerState.ENDED) {
         currentLoop++;
+        updateLoopCountDisplay();
         if (currentLoop < maxLoops) {
             player.seekTo(0);
             player.playVideo();
@@ -57,5 +65,6 @@ document.getElementById('youtube-form').addEventListener('submit', function(e) {
     }
     maxLoops = Math.max(1, Math.min(100, loopCount));
     currentLoop = 0;
+    updateLoopCountDisplay();
     createPlayer(videoId);
 });
